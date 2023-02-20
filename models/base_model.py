@@ -44,3 +44,8 @@ class BaseModel:
         """
         return {'id': self.id, 'created_at': self.created_at.isoformat(),
                 'updated_at': self.updated_at.isoformat(), '__class__': type(self).__name__}
+
+bm1 = BaseModel()
+bm2 = BaseModel()
+
+print(bm1.id == bm2.id)
