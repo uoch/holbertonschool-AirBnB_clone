@@ -11,7 +11,7 @@ class BaseModel:
     def __init__(self, id=None, *args, **kwargs,):
         if kwargs:
             for key, value in kwargs.items():
-                if key is not '__class__':
+                if key != '__class__':
                     setattr(self, key, value)
         else:
             """
@@ -24,7 +24,7 @@ class BaseModel:
             else:
             	self.id = str(uuid.uuid4())
             self.created_at = datetime.datetime.now()
-            # self.updated_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def save(self):
         """
@@ -44,8 +44,3 @@ class BaseModel:
         """
         return {'id': self.id, 'created_at': self.created_at.isoformat(),
                 'updated_at': self.updated_at.isoformat(), '__class__': type(self).__name__}
-
-bm1 = BaseModel()
-bm2 = BaseModel()
-
-print(bm1.id == bm2.id)
