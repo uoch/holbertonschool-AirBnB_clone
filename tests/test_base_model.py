@@ -43,5 +43,6 @@ class Test_Base_Model(unittest.TestCase):
         model_dict = self.base_model.to_dict()
         self.assertEqual(model_dict['__class__'], 'Base_Model')
 
+
 if __name__ == '__main__':
     unittest.main()

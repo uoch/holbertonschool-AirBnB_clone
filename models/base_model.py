@@ -8,17 +8,23 @@ class BaseModel:
     A base model that provides an ID and timestamp for other models to inherit from.
     """
 
-    def __init__(self, id=None):
-        """
-        Initializes a new instance of the BaseModel class.
-
-        """
-        if id is not None:
-            self.id = str(id) + ' - ' + str(uuid.uuid4())
+    def __init__(self, id=None, *args, **kwargs,):
+        if kwargs:
+            for key, value in kwargs.items():
+                if key is not '__class__':
+                    setattr(self, key, value)
         else:
-            self.id = str(uuid.uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+            """
+            Initializes a new instance of the BaseModel class.
+
+            """
+
+            if id is not None:
+            	self.id = str(id) + ' - ' + str(uuid.uuid4())
+            else:
+            	self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now()
+            # self.updated_at = datetime.datetime.now()
 
     def save(self):
         """
