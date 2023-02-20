@@ -1,5 +1,5 @@
 import unittest
-from base_model import Base_Model
+from base_model import BaseModel
 
 
 class Test_Base_Model(unittest.TestCase):
