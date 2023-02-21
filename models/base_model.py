@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import uuid
 import datetime
-from models.__init__ import storage
+import models
 
 class BaseModel:
     """
@@ -23,6 +23,7 @@ class BaseModel:
             if 'id' not in kwargs:
                 self.id = id
         else:
+            models.storage.new(self)
             self.id = id or str(uuid.uuid4())
             self.created_at = created_at or datetime.datetime.now()
             self.updated_at = updated_at or datetime.datetime.now()
@@ -32,6 +33,7 @@ class BaseModel:
         Updates the timestamp for the model to the current date and time.
         """
         self.updated_at = datetime.datetime.now()
+        models.storage.save()
 
     def __str__(self):
         """
