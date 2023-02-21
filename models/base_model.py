@@ -25,7 +25,7 @@ class BaseModel:
             if 'id' not in kwargs:
                 self.id = id
         else:
-            models.storage.new(self)
+            storage.new(self)
             self.id = id or str(uuid.uuid4())
             self.created_at = created_at or datetime.datetime.now()
             self.updated_at = updated_at or datetime.datetime.now()
@@ -34,9 +34,9 @@ class BaseModel:
         """
         Updates the timestamp for the model to the current date and time.
         """
-        from models import storage
+        import  models 
         self.updated_at = datetime.datetime.now()
-        models.storage.save()
+        storage.save()
 
     def __str__(self):
         """
