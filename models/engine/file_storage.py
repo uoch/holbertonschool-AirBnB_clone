@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """_summary_
     """
-
+import os
+import json
 
 class FileStorage:
     __file_path = "file.json"
@@ -20,7 +21,7 @@ class FileStorage:
             obj_dict = {}
             for key, obj in FileStorage.__objects.items():
                 obj_dict[key] = obj.to_dict()
-            json.dump(obj_dict, f)
+            return json.dump(obj_dict, f)
 
     def reload(self):
         if __file_path is not None:
