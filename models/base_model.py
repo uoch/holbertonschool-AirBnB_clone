@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 import uuid
 import datetime
-import models
+
+
 
 class BaseModel:
     """
@@ -9,6 +10,7 @@ class BaseModel:
     """
 
     def __init__(self, id=None, created_at=None, updated_at=None, *args, **kwargs):
+        from models import storage
         if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
@@ -32,6 +34,7 @@ class BaseModel:
         """
         Updates the timestamp for the model to the current date and time.
         """
+        from models import storage
         self.updated_at = datetime.datetime.now()
         models.storage.save()
 
