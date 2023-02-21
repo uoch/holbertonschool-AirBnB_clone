@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-BaseModel = __import__('models.base_model').BaseModel
 """_summary_
     """
 
@@ -22,10 +21,10 @@ class FileStorage:
             for key, obj in FileStorage.__objects.items():
                 obj_dict[key] = obj.to_dict()
             json.dump(obj_dict, f)
-    def reload(self): 
-        if __file_path is not None :
+
+    def reload(self):
+        if __file_path is not None:
             with open('data.json', 'r') as f:
                 self.__objects = json.load(f)
         else:
             exit()
-        
