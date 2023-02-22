@@ -38,12 +38,15 @@ with the data from the dictionary value
 7 Add the new instance to the __objects dictionary
 using the key class name and ID
     """
-        try:
-            with open(self.__file_path, 'r') as f:
-                bigob = json.load(f)
-                for key, obj in bigob.items():
-                    class_name = key.split('.')[0]
-                    obj = eval(class_name)(**obj)
-                    self.__objects[key] = obj
-        except FileNotFoundError:
-        	pass
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+                try:
+                    objs_dict = json.load(f)
+                except json.JSONDecodeError:
+                    objs_dict = {}
+                for key, value in objs_dict.items():
+                    cls_name = key.split('.')[0]
+                    obj = eval(cls_name)(**value)
+                    self.new(obj)
+        else:
+            pass
