@@ -95,8 +95,19 @@ class HBNBCommand(cmd.Cmd):
             return
         if len(arg.split()) < 3:
             print("** attribute name missing **")
+            return
         if len(arg.split()) < 4:
             print("** value missing **")
+            return
+        key = class_name + '.' + given_id
+        bigob = storage.all()
+        if key not in bigob:
+            print("** no instance found **")
+            return
+        attr_name = arg.split()[2]
+        attr_value = arg.split()[3]
+        setattr(bigob[key], attr_name, attr_value)
+        storage.save()
 
 
 if __name__ == '__main__':
