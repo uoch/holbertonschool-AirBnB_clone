@@ -5,8 +5,8 @@ import cmd
 from models.engine.file_storage import FileStorage
 from models import storage
 from models.base_model import BaseModel
-
-class_dict = {'BaseModel': BaseModel, 'OtherModel': OtherModel}
+from models.user import User
+class_dict = {'BaseModel': BaseModel, 'User': User}
 
 
 def split(arg):

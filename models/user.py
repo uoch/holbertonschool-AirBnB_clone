@@ -14,5 +14,3 @@ class User(BaseModel):
     def __str__(self):
         return (f"[User]({self.id}) {self.__dict__}")
 
-
-update_filestorage(User)
