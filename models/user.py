@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """user"""
 from models.base_model import BaseModel
-from models.engine.file_storage import update_filestorage
 
 
 class User(BaseModel):
