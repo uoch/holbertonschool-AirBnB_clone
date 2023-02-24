@@ -31,9 +31,10 @@ def check_in_bigobj(class_name, given_id):
         return None
     else:
         instance = obj[key]
+        print(instance)
         return instance
 
-
+print
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '

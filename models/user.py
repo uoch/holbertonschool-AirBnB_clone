@@ -11,5 +11,5 @@ class User(BaseModel):
     last_name = ""
 
     def __str__(self):
-        return (f"[User]({self.id}) {self.__dict__}")
+        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
 
