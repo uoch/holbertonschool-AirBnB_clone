@@ -12,7 +12,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        return FileStorage.__objects
+        return self.__objects
 
     def new(self, obj):
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
@@ -20,7 +20,7 @@ class FileStorage:
         return self.__objects
 
     def save(self):
-        with open(FileStorage.__file_path, 'w', encoding='utf-8') as f:
+        with open(self.__file_path, 'w', encoding='utf-8') as f:
             obj_dict = {}
             for key, obj in FileStorage.__objects.items():
                 obj_dict[key] = obj.to_dict()
@@ -39,7 +39,7 @@ with the data from the dictionary value
 using the key class name and ID
     """
         if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, mode="r", encoding="utf-8") as f:
+            with open(self.__file_path, mode="r", encoding="utf-8") as f:
                 try:
                     objs_dict = json.load(f)
                 except json.JSONDecodeError:
@@ -47,6 +47,6 @@ using the key class name and ID
                 for key, value in objs_dict.items():
                     cls_name = key.split('.')[0]
                     obj = eval(cls_name)(**value)
-                    self.new(obj)
+                    self.__objects[key] = obj
         else:
             pass

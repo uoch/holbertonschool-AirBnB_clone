@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
         if class_name not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
-        new_object = BaseModel()
+        new_object = eval(arg)()
         new_object.save()
         print(new_object.id)
 
@@ -113,7 +113,6 @@ class HBNBCommand(cmd.Cmd):
         attr_value = arg.split()[3]
         setattr(instance, attr_name, attr_value)
         storage.save()
-
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+
