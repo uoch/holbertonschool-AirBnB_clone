@@ -56,7 +56,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = arg.split()[0]
-        if class_name not in ['BaseModel', 'OtherModel']:
+        if class_name not in ['BaseModel', 'User']:
             print("** class doesn't exist **")
             return
         new_object = BaseModel()
