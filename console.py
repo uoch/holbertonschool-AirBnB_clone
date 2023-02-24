@@ -90,7 +90,13 @@ class HBNBCommand(cmd.Cmd):
         print([str(obj) for obj in objs if type(obj).__name__ == class_name])
 
     def do_update(self, arg):
-        pass
+        class_name, given_id = split(arg)
+        if not class_name or not given_id:
+            return
+        if len(arg.split()) < 3:
+            print("** attribute name missing **")
+        if len(arg.split()) < 4:
+            print("** value missing **")
 
 
 if __name__ == '__main__':
