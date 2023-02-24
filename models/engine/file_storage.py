@@ -4,8 +4,16 @@
 import os
 from datetime import datetime
 from models.base_model import BaseModel
+from models.user import User
 import json
+def update_filestorage(*args):
+    for cls in args:
+        if cls.__name__ not in FileStorage.__objects.keys():
+            FileStorage.__objects[cls.__name__] = {}
 
+        for obj in cls.all().values():
+            key = "{}.{}".format(cls.__name__, obj.id)
+            FileStorage.__objects[cls.__name__][key] = obj
 
 class FileStorage:
     __file_path = "file.json"

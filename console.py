@@ -6,7 +6,7 @@ from models.engine.file_storage import FileStorage
 from models import storage
 from models.base_model import BaseModel
 
-classs = ['BaseModel',]
+class_dict = {'BaseModel': BaseModel, 'OtherModel': OtherModel}
 
 
 def split(arg):
@@ -14,7 +14,7 @@ def split(arg):
         print("** class name missing **")
         return None, None
     class_name = arg.split()[0]
-    if class_name not in ['BaseModel', 'OtherModel']:
+    if class_name not in class_dict:
         print("** class doesn't exist **")
         return None, None
     if len(arg.split()) < 2:
@@ -22,7 +22,6 @@ def split(arg):
         return None, None
     given_id = arg.split()[1]
     return class_name, given_id
-
 
 def check_in_bigobj(class_name, given_id):
     key = class_name + '.' + given_id
@@ -33,6 +32,7 @@ def check_in_bigobj(class_name, given_id):
     else:
         instance = obj[key]
         return instance
+
 
 
 class HBNBCommand(cmd.Cmd):
