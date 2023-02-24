@@ -24,6 +24,17 @@ def split(arg):
     return class_name, given_id
 
 
+def check_in_bigobj(class_name, given_id):
+    key = class_name + '.' + given_id
+    obj = storage.all()
+    if key not in obj:
+        print("** no instance found **")
+        return None
+    else:
+        instance = obj[key]
+        return instance
+
+
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
@@ -56,27 +67,22 @@ class HBNBCommand(cmd.Cmd):
         class_name, given_id = split(arg)
         if not class_name or not given_id:
             return
-        key = class_name + '.' + given_id
-        obj = storage.all()
-
-        if key not in obj:
-            print("** no instance found **")
-        else:
-            instance = obj[key]
-            print(instance)
+        instance = check_in_bigobj(class_name, given_id)
+        if not instance:
+            return
+        print(instance)
 
     def do_destroy(self, arg):
         class_name, given_id = split(arg)
         if not class_name or not given_id:
             return
+        instance = check_in_bigobj(class_name, given_id)
+        if not instance:
+            return
         key = class_name + '.' + given_id
         obj = storage.all()
-
-        if key not in obj:
-            print("** no instance found **")
-        else:
-            del obj[key]
-            storage.save()
+        del obj[key]
+        storage.save()
 
     def do_all(self, arg):
         if not arg:
@@ -99,10 +105,8 @@ class HBNBCommand(cmd.Cmd):
         if len(arg.split()) < 4:
             print("** value missing **")
             return
-        key = class_name + '.' + given_id
-        bigob = storage.all()
-        if key not in bigob:
-            print("** no instance found **")
+        instance = check_in_bigobj(class_name, given_id)
+        if not instance:
             return
         attr_name = arg.split()[2]
         attr_value = arg.split()[3]
