@@ -110,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             return
         attr_name = arg.split()[2]
         attr_value = arg.split()[3]
-        setattr(bigob[key], attr_name, attr_value)
+        setattr(instance, attr_name, attr_value)
         storage.save()
 
 
