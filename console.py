@@ -13,14 +13,15 @@ from models.review import Review
 from models.user import User
 
 class_dict = {
-    'BaseModel': BaseModel, 
-    'User': User, 
-    'State': State, 
-    'City': City, 
-    'Amenity': Amenity, 
-    'Place': Place, 
+    'BaseModel': BaseModel,
+    'User': User,
+    'State': State,
+    'City': City,
+    'Amenity': Amenity,
+    'Place': Place,
     'Review': Review
 }
+
 
 def split(arg):
     if not arg:
@@ -36,6 +37,7 @@ def split(arg):
     given_id = arg.split()[1]
     return class_name, given_id
 
+
 def check_in_bigobj(class_name, given_id):
     key = class_name + '.' + given_id
     obj = storage.all()
@@ -46,6 +48,7 @@ def check_in_bigobj(class_name, given_id):
         instance = obj[key]
         print(instance)
         return instance
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
@@ -68,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = arg.split()[0]
-        if class_name not in ['BaseModel', 'User','State','City','Amenity','Place','Review']:
+        if class_name not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
             print("** class doesn't exist **")
             return
         new_object = eval(arg)()
@@ -97,15 +100,19 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
-        if not arg:
-            print("** class name missing **")
-            return
-        class_name = arg.split()[0]
-        if class_name not in ['BaseModel', 'OtherModel']:
-            print("** class doesn't exist **")
-            return
-        objs = storage.all().values()
-        print([str(obj) for obj in objs if type(obj).__name__ == class_name])
+        if arg:
+            class_name = arg.split()[0]
+            if class_name not in class_dict:
+                print("** class doesn't exist **")
+                return
+            objs = storage.all().values()
+            objs_filtered = [str(obj) for obj in objs if type(
+                obj).__name__ == class_name]
+            print(objs_filtered)
+        else:
+            objs = storage.all().values()
+            objs_filtered = [str(obj) for obj in objs]
+            print(objs_filtered)
 
     def do_update(self, arg):
         class_name, given_id = split(arg)
