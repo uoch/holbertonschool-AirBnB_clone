@@ -12,9 +12,15 @@ from models.place import Place
 from models.review import Review
 from models.user import User
 
-class_dict = {'BaseModel': BaseModel, 'User': User, State: "State",
-              City: "City", Amenity: "Amenity", Place: "Place", Review: "Review"}
-
+class_dict = {
+    'BaseModel': BaseModel, 
+    'User': User, 
+    'State': State, 
+    'City': City, 
+    'Amenity': Amenity, 
+    'Place': Place, 
+    'Review': Review
+}
 
 def split(arg):
     if not arg:
@@ -29,7 +35,6 @@ def split(arg):
         return None, None
     given_id = arg.split()[1]
     return class_name, given_id
-
 
 def check_in_bigobj(class_name, given_id):
     key = class_name + '.' + given_id
