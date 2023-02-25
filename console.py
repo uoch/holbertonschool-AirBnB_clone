@@ -21,7 +21,7 @@ class_dict = {
     'Place': Place,
     'Review': Review
 }
-
+lists =['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
 
 def split(arg):
     if not arg:
@@ -71,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = arg.split()[0]
-        if class_name not in ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']:
+        if class_name not in lists:
             print("** class doesn't exist **")
             return
         new_object = eval(arg)()

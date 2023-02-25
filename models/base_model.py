@@ -6,7 +6,8 @@ import models
 
 class BaseModel:
     """
-    A base model that provides an ID and timestamp for other models to inherit from.
+    A base model that provides an ID
+    and timestamp for other models to inherit from.
     """
 
     def __init__(self, id=None, created_at=None, updated_at=None, **kwargs):
@@ -44,12 +45,14 @@ class BaseModel:
         """
         Returns a string representation of the model.
         """
-        return "[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}"\
+            .format(type(self).__name__, self.id, self.__dict__)
 
     def to_dict(self):
         """
         Returns a dictionary representation of the model.
         """
-        # Always include the 'id' attribute, even if it's not in the instance's dictionary
-        return {'id': getattr(self, 'id', None), 'created_at': self.created_at.isoformat(),
-                'updated_at': self.updated_at.isoformat(), '__class__': type(self).__name__}
+        return {'id': getattr(self, 'id', None),
+                'created_at': self.created_at.isoformat(),
+                'updated_at': self.updated_at.isoformat(),
+                '__class__': type(self).__name__}
