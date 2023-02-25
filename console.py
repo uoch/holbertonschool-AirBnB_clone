@@ -21,7 +21,8 @@ class_dict = {
     'Place': Place,
     'Review': Review
 }
-lists =['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+lists = ['BaseModel', 'User', 'State', 'City', 'Amenity', 'Place', 'Review']
+
 
 def split(arg):
     if not arg:
