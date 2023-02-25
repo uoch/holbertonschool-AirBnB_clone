@@ -5,8 +5,15 @@ import cmd
 from models.engine.file_storage import FileStorage
 from models import storage
 from models.base_model import BaseModel
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models.user import User
-class_dict = {'BaseModel': BaseModel, 'User': User}
+
+class_dict = {'BaseModel': BaseModel, 'User': User, State: "State",
+              City: "City", Amenity: "Amenity", Place: "Place", Review: "Review"}
 
 
 def split(arg):
@@ -23,6 +30,7 @@ def split(arg):
     given_id = arg.split()[1]
     return class_name, given_id
 
+
 def check_in_bigobj(class_name, given_id):
     key = class_name + '.' + given_id
     obj = storage.all()
@@ -34,7 +42,9 @@ def check_in_bigobj(class_name, given_id):
         print(instance)
         return instance
 
+
 print
+
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
@@ -113,6 +123,7 @@ class HBNBCommand(cmd.Cmd):
         attr_value = arg.split()[3]
         setattr(instance, attr_name, attr_value)
         storage.save()
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
