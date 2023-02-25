@@ -42,10 +42,6 @@ def check_in_bigobj(class_name, given_id):
         print(instance)
         return instance
 
-
-print
-
-
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
 
@@ -67,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = arg.split()[0]
-        if class_name not in ['BaseModel', 'User']:
+        if class_name not in ['BaseModel', 'User','State','City','Amenity','Place','Review']:
             print("** class doesn't exist **")
             return
         new_object = eval(arg)()
