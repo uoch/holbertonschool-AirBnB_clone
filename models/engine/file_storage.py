@@ -48,7 +48,7 @@ with the data from the dictionary value
 using the key class name and ID
     """
         if os.path.exists(FileStorage.__file_path):
-            with open(self.__file_path, mode="r", encoding="utf-8") as f:
+            with open(self.__file_path, "r") as f:
                 try:
                     objs_dict = json.load(f)
                 except json.JSONDecodeError:

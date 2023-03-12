@@ -1,0 +1,19 @@
+header {
+    color: white;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #CCCCCC;
+
+
+
+}
+
+.logo {
+    position: absolute;
+    width: 140px;
+    height: 60px;
+    background-image: url(../images/logo.png);
+    left: 20px;
+    
+
+}
